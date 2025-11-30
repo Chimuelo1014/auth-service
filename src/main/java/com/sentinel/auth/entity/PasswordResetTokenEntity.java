@@ -9,24 +9,23 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "refresh_tokens", indexes = {
-    @Index(name = "idx_refresh_tokens_token", columnList = "token"),
-    @Index(name = "idx_refresh_tokens_user_id", columnList = "user_id"),
-    @Index(name = "idx_refresh_tokens_status", columnList = "status")
+@Table(name = "password_reset_tokens", indexes = {
+    @Index(name = "idx_password_reset_tokens_token", columnList = "token"),
+    @Index(name = "idx_password_reset_tokens_user_id", columnList = "user_id")
 })
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RefreshTokenEntity {
+public class PasswordResetTokenEntity {
 
     @Id
     @GeneratedValue
     private UUID id;
 
     @Column(nullable = false, unique = true, length = 64)
-    private String tokenHash; // SHA-256 hash del token
+    private String token;
 
     @Column(name = "user_id", nullable = false)
     private UUID userId;
@@ -41,32 +40,14 @@ public class RefreshTokenEntity {
     @Column(name = "used_at")
     private LocalDateTime usedAt;
 
-    @Column(name = "revoked_at")
-    private LocalDateTime revokedAt;
-
-    @Column(name = "ip_address", length = 45)
-    private String ipAddress;
-
-    @Column(name = "user_agent", length = 500)
-    private String userAgent;
-
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
     // Helper methods
-    public boolean isActive() {
+    public boolean isValid() {
         return status == TokenStatus.ACTIVE && 
                LocalDateTime.now().isBefore(expiresAt);
-    }
-
-    public boolean isExpired() {
-        return LocalDateTime.now().isAfter(expiresAt);
-    }
-
-    public void revoke() {
-        this.status = TokenStatus.REVOKED;
-        this.revokedAt = LocalDateTime.now();
     }
 
     public void markAsUsed() {

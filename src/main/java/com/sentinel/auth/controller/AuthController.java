@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
  * - Refresh Access Token
  */
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/auth") // ✅ Corregido para coincidir con SecurityConfig
 @RequiredArgsConstructor
 public class AuthController {
 
