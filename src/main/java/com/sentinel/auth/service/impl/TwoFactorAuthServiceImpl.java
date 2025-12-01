@@ -2,9 +2,7 @@ package com.sentinel.auth.service.impl;
 
 import com.sentinel.auth.constants.ErrorMessages;
 import com.sentinel.auth.constants.SecurityConstants;
-import com.sentinel.auth.constants.SuccessMessages;
 import com.sentinel.auth.dto.request.Enable2FARequest;
-import com.sentinel.auth.dto.request.Verify2FARequest;
 import com.sentinel.auth.dto.response.TwoFactorSetupResponse;
 import com.sentinel.auth.entity.UserEntity;
 import com.sentinel.auth.enums.AuditAction;
@@ -85,7 +83,7 @@ public class TwoFactorAuthServiceImpl implements TwoFactorAuthService {
 
     @Override
     @Transactional
-    public void enable2FA(UUID userId, Enable2FARequest request) {
+    public void enable2FA(UUID userId, Enable2FARequest enableRequest) {
         log.info("Enabling 2FA for user: {}", userId);
 
         UserEntity user = userRepository.findById(userId)
@@ -96,12 +94,12 @@ public class TwoFactorAuthServiceImpl implements TwoFactorAuthService {
         }
 
         // Verificar que el secret coincida
-        if (!request.getSecret().equals(user.getTwoFactorSecret())) {
+        if (!enableRequest.getSecret().equals(user.getTwoFactorSecret())) {
             throw new TwoFactorAuthException("Invalid secret");
         }
 
         // Verificar el código
-        if (!verify2FACode(userId, request.getCode())) {
+        if (!verify2FACode(userId, enableRequest.getCode())) {
             throw new TwoFactorAuthException(ErrorMessages.TWO_FACTOR_CODE_INVALID);
         }
 
@@ -116,7 +114,7 @@ public class TwoFactorAuthServiceImpl implements TwoFactorAuthService {
             AuditAction.TWO_FACTOR_ENABLED,
             "Two-factor authentication enabled",
             getClientIP(),
-            request.getHeader("User-Agent"),
+            request.getHeader("User-Agent"), // ← request.getHeader NO enableRequest.getHeader
             true,
             null
         );

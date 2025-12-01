@@ -1,9 +1,9 @@
 package com.sentinel.auth.service;
 
 import com.sentinel.auth.dto.request.Enable2FARequest;
-import com.sentinel.auth.dto.request.Verify2FARequest;
 import com.sentinel.auth.dto.response.TwoFactorSetupResponse;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface TwoFactorAuthService {

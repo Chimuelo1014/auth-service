@@ -9,33 +9,22 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 @Repository
 public interface PasswordResetTokenRepository extends JpaRepository<PasswordResetTokenEntity, UUID> {
 
-    /**
-     * Find an active token by its value.
-     */
     Optional<PasswordResetTokenEntity> findByTokenAndStatus(String token, TokenStatus status);
 
-    /**
-     * Find all tokens for a user.
-     */
     @Query("SELECT t FROM PasswordResetTokenEntity t WHERE t.userId = :userId")
     List<PasswordResetTokenEntity> findByUserId(@Param("userId") UUID userId);
 
-    /**
-     * Delete expired tokens (cleanup job).
-     */
     @Modifying
     @Query("DELETE FROM PasswordResetTokenEntity t WHERE t.expiresAt < :now")
     void deleteExpiredTokens(@Param("now") LocalDateTime now);
 
-    /**
-     * Revoke all active tokens for a user.
-     */
     @Modifying
     @Query("UPDATE PasswordResetTokenEntity t SET t.status = :status WHERE t.userId = :userId AND t.status = :activeStatus")
     void revokeAllUserTokens(
