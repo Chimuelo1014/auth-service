@@ -15,16 +15,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
-import java.util.List;
 
-/**
- * Configuración de seguridad simplificada para MVP.
- * 
- * Por ahora:
- * - JWT para endpoints /api/auth/**
- * - OAuth2 deshabilitado temporalmente (hasta tener handlers custom)
- * - CORS configurado para frontend local
- */
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfig {
@@ -37,35 +28,53 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
         http
             .csrf(csrf -> csrf.disable())
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+
+            
             .authorizeHttpRequests(auth -> auth
-                // Public endpoints
+
+                
                 .requestMatchers("/api/auth/register").permitAll()
                 .requestMatchers("/api/auth/login").permitAll()
                 .requestMatchers("/api/auth/refresh").permitAll()
                 .requestMatchers("/api/auth/password/**").permitAll()
-                
-                // Actuator (health checks)
                 .requestMatchers("/actuator/**").permitAll()
+
                 
-                // OAuth2 endpoints (temporalmente deshabilitados)
-                // .requestMatchers("/oauth2/**", "/login/oauth2/**").permitAll()
-                
-                // Protected endpoints
+                .requestMatchers(
+                        "/oauth2/**",
+                        "/login/oauth2/**"
+                ).permitAll()
+
+                // Protegidos
                 .requestMatchers("/api/auth/2fa/**").authenticated()
                 .anyRequest().authenticated()
             )
-            .sessionManagement(sm -> sm
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+
+            // Stateless porque usas JWT
+            .sessionManagement(sm ->
+                sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             )
-            // OAuth2 login deshabilitado temporalmente
-            // .oauth2Login(oauth2 -> oauth2
-            //     .defaultSuccessUrl("http://localhost:3000/auth/success", true)
-            //     .failureUrl("http://localhost:3000/auth/error")
-            // )
+
+            
+            .oauth2Login(oauth2 -> oauth2
+                .authorizationEndpoint(ep ->
+                    ep.baseUri("/oauth2/authorize") // donde empieza el login
+                )
+                .redirectionEndpoint(ep ->
+                    ep.baseUri("/login/oauth2/code/*") // URL donde Google responde
+                )
+                .defaultSuccessUrl("http://localhost:3000/auth/success", true)
+                .failureUrl("http://localhost:3000/auth/error")
+            )
+
+            // Tu provider de autenticación local
             .authenticationProvider(authenticationProvider)
+
+            // Filtro JWT antes del filtro por defecto
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
@@ -80,7 +89,7 @@ public class SecurityConfig {
         config.setAllowCredentials(true);
         config.setExposedHeaders(Arrays.asList("Authorization", "Content-Type"));
         config.setMaxAge(3600L);
-        
+
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
         return source;
