@@ -24,9 +24,6 @@ public class OAuth2Config {
     @Value("${spring.security.oauth2.client.registration.microsoft.client-secret:}")
     private String microsoftClientSecret;
 
-    @Value("${app.url:http://localhost:8081}")
-    private String appUrl;
-
     @Bean
     public ClientRegistrationRepository clientRegistrationRepository() {
         return new InMemoryClientRegistrationRepository(
@@ -41,7 +38,7 @@ public class OAuth2Config {
                 .clientSecret(googleClientSecret)
                 .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
                 .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
-                .redirectUri(appUrl + "/api/auth/oauth2/callback/google")
+                .redirectUri("{baseUrl}/login/oauth2/code/{registrationId}") // ⬅️ CAMBIO AQUÍ
                 .scope("openid", "profile", "email")
                 .authorizationUri("https://accounts.google.com/o/oauth2/v2/auth")
                 .tokenUri("https://oauth2.googleapis.com/token")
@@ -58,7 +55,7 @@ public class OAuth2Config {
                 .clientSecret(microsoftClientSecret)
                 .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_POST)
                 .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
-                .redirectUri(appUrl + "/api/auth/oauth2/callback/microsoft")
+                .redirectUri("{baseUrl}/login/oauth2/code/{registrationId}") // ⬅️ CAMBIO AQUÍ
                 .scope("openid", "profile", "email", "User.Read")
                 .authorizationUri("https://login.microsoftonline.com/common/oauth2/v2.0/authorize")
                 .tokenUri("https://login.microsoftonline.com/common/oauth2/v2.0/token")

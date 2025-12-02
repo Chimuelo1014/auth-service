@@ -20,26 +20,20 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/auth/**").permitAll()
-                .requestMatchers("/oauth2/**").permitAll()
-                .requestMatchers("/login/oauth2/**").permitAll()
-                .anyRequest().authenticated()
-            )
-            .sessionManagement(sm -> sm
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            )
-            .oauth2Login(oauth2 -> oauth2
-                .authorizationEndpoint(authorization -> authorization
-                    .baseUri("/api/auth/oauth2/authorize")
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/oauth2/**").permitAll()
+                        .requestMatchers("/login/oauth2/**").permitAll() // ⬅️ IMPORTANTE
+                        .anyRequest().authenticated())
+                .sessionManagement(sm -> sm
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .oauth2Login(oauth2 -> oauth2
+                        .defaultSuccessUrl("http://localhost:3000/auth/success", true) // ⬅️ AGREGAR ESTO
+                        .failureUrl("http://localhost:3000/auth/error") // ⬅️ AGREGAR ESTO
                 )
-                .redirectionEndpoint(redirection -> redirection
-                    .baseUri("/api/auth/oauth2/callback/*")
-                )
-            )
-            .authenticationProvider(authenticationProvider)
-            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+                .authenticationProvider(authenticationProvider)
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
