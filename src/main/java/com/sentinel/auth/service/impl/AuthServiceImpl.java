@@ -1,20 +1,16 @@
 package com.sentinel.auth.service.impl;
 
-import com.sentinel.auth.client.TenantServiceClient;
-import com.sentinel.auth.client.dto.TenantCreationRequest;
-import com.sentinel.auth.client.dto.TenantDTO;
 import com.sentinel.auth.constants.ErrorMessages;
 import com.sentinel.auth.dto.request.LoginRequest;
-import com.sentinel.auth.dto.request.LoginWith2FARequest;
 import com.sentinel.auth.dto.request.RefreshTokenRequest;
 import com.sentinel.auth.dto.request.RegisterRequest;
 import com.sentinel.auth.dto.response.AuthResponse;
 import com.sentinel.auth.entity.RefreshTokenEntity;
 import com.sentinel.auth.entity.UserEntity;
 import com.sentinel.auth.enums.*;
+import com.sentinel.auth.events.AuthEventPublisher;
 import com.sentinel.auth.exception.types.InvalidCredentialsException;
 import com.sentinel.auth.exception.types.TokenValidationException;
-import com.sentinel.auth.exception.types.TwoFactorAuthException;
 import com.sentinel.auth.exception.types.UserAlreadyExistsException;
 import com.sentinel.auth.exception.types.UserNotFoundException;
 import com.sentinel.auth.repository.RefreshTokenRepository;
@@ -22,7 +18,6 @@ import com.sentinel.auth.repository.UserRepository;
 import com.sentinel.auth.service.AuditLogService;
 import com.sentinel.auth.service.AuthService;
 import com.sentinel.auth.service.JWTService;
-import com.sentinel.auth.service.TwoFactorAuthService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -49,10 +44,9 @@ public class AuthServiceImpl implements AuthService {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final JWTService jwtService;
-    private final TenantServiceClient tenantServiceClient;
     private final AuditLogService auditLogService;
+    private final AuthEventPublisher authEventPublisher;
     private final HttpServletRequest request;
-    private final TwoFactorAuthService twoFactorAuthService;
 
     @Value("${jwt.refresh.expiration:2592000000}")
     private long refreshTokenExpiration;
@@ -74,31 +68,19 @@ public class AuthServiceImpl implements AuthService {
                 .globalRole(GlobalRole.valueOf(req.getRole()))
                 .authProvider(AuthProvider.LOCAL)
                 .status(UserStatus.ACTIVE)
-                .emailVerified(true)
+                .emailVerified(true) // Por ahora true, después implementar verificación
                 .build();
 
         userRepository.save(user);
         log.info("User created with ID: {}", user.getId());
 
-        // Crear tenant automáticamente
-        try {
-            TenantCreationRequest tenantReq = TenantCreationRequest.builder()
-                    .name(req.getEmail() + "'s Workspace")
-                    .ownerId(user.getId())
-                    .ownerEmail(user.getEmail())
-                    .plan("FREE")
-                    .autoGenerateName(true)
-                    .build();
-
-            TenantDTO tenant = tenantServiceClient.createTenant(tenantReq);
-            
-            user.setTenantId(tenant.getId());
-            userRepository.save(user);
-            
-            log.info("Tenant created with ID: {}", tenant.getId());
-        } catch (Exception e) {
-            log.error("Failed to create tenant for user {}: {}", user.getId(), e.getMessage());
-        }
+        // 🔥 PUBLICAR EVENTO: User Registered
+        // Tenant-service lo consumirá para crear el tenant automáticamente
+        authEventPublisher.publishUserRegistered(
+            user.getId(),
+            user.getEmail(),
+            user.getGlobalRole().name()
+        );
 
         String accessToken = jwtService.generateToken(user);
         String refreshToken = createRefreshToken(user);
@@ -206,6 +188,13 @@ public class AuthServiceImpl implements AuthService {
             null
         );
 
+        // 🔥 PUBLICAR EVENTO: User Login
+        authEventPublisher.publishUserLogin(
+            user.getId(),
+            user.getEmail(),
+            getClientIP()
+        );
+
         log.info("User logged in successfully: {}", user.getId());
 
         return AuthResponse.builder()
@@ -263,56 +252,6 @@ public class AuthServiceImpl implements AuthService {
         return AuthResponse.builder()
                 .token(newAccessToken)
                 .refreshToken(req.getRefreshToken())
-                .tokenType("Bearer")
-                .build();
-    }
-
-    public AuthResponse loginWith2FA(LoginWith2FARequest req) {
-        log.info("Login with 2FA attempt for user: {}", req.getEmail());
-        
-        authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(
-                req.getEmail(),
-                req.getPassword()
-            )
-        );
-        
-        UserEntity user = userRepository.findByEmail(req.getEmail())
-                .orElseThrow(() -> new UserNotFoundException(ErrorMessages.USER_NOT_FOUND));
-        
-        if (user.isTwoFactorEnabled()) {
-            if (!twoFactorAuthService.verify2FACode(user.getId(), req.getTwoFactorCode())) {
-                auditLogService.logAction(
-                    user.getId(),
-                    user.getTenantId(),
-                    AuditAction.USER_LOGIN_FAILED,
-                    "Invalid 2FA code",
-                    getClientIP(),
-                    request.getHeader("User-Agent"),
-                    false,
-                    "2FA verification failed"
-                );
-                throw new TwoFactorAuthException(ErrorMessages.TWO_FACTOR_CODE_INVALID);
-            }
-        }
-        
-        String accessToken = jwtService.generateToken(user);
-        String refreshToken = createRefreshToken(user);
-        
-        auditLogService.logAction(
-            user.getId(),
-            user.getTenantId(),
-            AuditAction.USER_LOGIN,
-            "User logged in with 2FA",
-            getClientIP(),
-            request.getHeader("User-Agent"),
-            true,
-            null
-        );
-        
-        return AuthResponse.builder()
-                .token(accessToken)
-                .refreshToken(refreshToken)
                 .tokenType("Bearer")
                 .build();
     }

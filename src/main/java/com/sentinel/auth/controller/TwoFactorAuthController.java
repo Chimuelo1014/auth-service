@@ -4,6 +4,8 @@ import com.sentinel.auth.constants.APIConstants;
 import com.sentinel.auth.dto.request.Enable2FARequest;
 import com.sentinel.auth.dto.request.Verify2FARequest;
 import com.sentinel.auth.dto.response.TwoFactorSetupResponse;
+import com.sentinel.auth.entity.UserEntity;
+import com.sentinel.auth.repository.UserRepository;
 import com.sentinel.auth.service.TwoFactorAuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +18,8 @@ import java.util.UUID;
 
 /**
  * Controller para gestión de Two-Factor Authentication.
+ * 
+ * NOTA: extractUserId() ahora busca el usuario por email desde el Authentication
  */
 @RestController
 @RequestMapping(APIConstants.TWO_FACTOR_BASE_PATH)
@@ -23,6 +27,7 @@ import java.util.UUID;
 public class TwoFactorAuthController {
 
     private final TwoFactorAuthService twoFactorAuthService;
+    private final UserRepository userRepository;
 
     /**
      * Inicia el setup de 2FA (genera QR code).
@@ -77,12 +82,30 @@ public class TwoFactorAuthController {
         return ResponseEntity.ok(Map.of("valid", valid));
     }
 
-    // Helper method
+    /**
+     * Extrae userId desde el Authentication (UserDetails).
+     * 
+     * El Authentication.getPrincipal() devuelve UserEntity (que implementa UserDetails).
+     */
     private UUID extractUserId(Authentication authentication) {
-        // Extraer userId del JWT claims
-        // Por ahora usamos email y lo buscamos
-        String email = authentication.getName();
-        // TODO: Implementar extracción directa del userId desde JWT
-        throw new UnsupportedOperationException("Extract userId from JWT not implemented yet");
+        if (authentication == null || authentication.getPrincipal() == null) {
+            throw new RuntimeException("No authenticated user found");
+        }
+        
+        Object principal = authentication.getPrincipal();
+        
+        // Si el principal es UserEntity (nuestro caso)
+        if (principal instanceof UserEntity userEntity) {
+            return userEntity.getId();
+        }
+        
+        // Si es un String (username/email)
+        if (principal instanceof String email) {
+            return userRepository.findByEmail(email)
+                    .map(UserEntity::getId)
+                    .orElseThrow(() -> new RuntimeException("User not found: " + email));
+        }
+        
+        throw new RuntimeException("Unexpected principal type: " + principal.getClass().getName());
     }
 }
