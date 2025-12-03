@@ -1,5 +1,6 @@
 package com.sentinel.auth.service;
 
+import com.sentinel.auth.entity.UserEntity;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -11,16 +12,15 @@ import org.springframework.stereotype.Service;
 
 import java.security.Key;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import java.util.function.Function;
 
 /**
  * Service responsible for generating and validating JWT tokens.
- *
- * <p>Includes:</p>
- * - Token creation with custom claims
- * - Token validation logic
- * - Claim extraction utilities
+ * 
+ * ✅ FIX: Ahora incluye userId en los claims del token
  */
 @Service
 public class JWTService {
@@ -33,20 +33,28 @@ public class JWTService {
 
     /**
      * Generates a JWT token for the provided user.
-     *
-     * @param userDetails authenticated user
-     * @return JWT token
+     * ✅ Incluye userId en los claims
      */
     public String generateToken(UserDetails userDetails) {
-        return generateToken(Map.of(), userDetails);
+        Map<String, Object> extraClaims = new HashMap<>();
+        
+        // ✅ Si es UserEntity, extraer userId
+        if (userDetails instanceof UserEntity) {
+            UserEntity user = (UserEntity) userDetails;
+            extraClaims.put("userId", user.getId().toString());
+            extraClaims.put("email", user.getEmail());
+            extraClaims.put("globalRole", user.getGlobalRole().name());
+            
+            if (user.getTenantId() != null) {
+                extraClaims.put("tenantId", user.getTenantId().toString());
+            }
+        }
+        
+        return generateToken(extraClaims, userDetails);
     }
 
     /**
      * Generates JWT token with extra claims.
-     *
-     * @param extraClaims additional claims
-     * @param userDetails user details
-     * @return JWT
      */
     public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
         Date now = new Date();
@@ -63,10 +71,6 @@ public class JWTService {
 
     /**
      * Validates if the token is valid and belongs to this user.
-     *
-     * @param token JWT
-     * @param userDetails UserDetails
-     * @return true if valid
      */
     public boolean isTokenValid(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
@@ -78,6 +82,21 @@ public class JWTService {
      */
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
+    }
+
+    /**
+     * ✅ Extrae userId del token
+     */
+    public UUID extractUserId(String token) {
+        String userIdStr = extractClaim(token, claims -> claims.get("userId", String.class));
+        return userIdStr != null ? UUID.fromString(userIdStr) : null;
+    }
+
+    /**
+     * ✅ Extrae email del token
+     */
+    public String extractEmail(String token) {
+        return extractClaim(token, claims -> claims.get("email", String.class));
     }
 
     /**

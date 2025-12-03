@@ -1,14 +1,13 @@
 package com.sentinel.auth.config;
 
 import com.sentinel.auth.security.filters.JWTAuthenticationFilter;
+import com.sentinel.auth.security.oauth2.OAuth2AuthenticationSuccessHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -19,18 +18,15 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.Arrays;
 
 @Configuration
-@EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
 
     private final JWTAuthenticationFilter jwtAuthenticationFilter;
     private final AuthenticationProvider authenticationProvider;
+    private final OAuth2AuthenticationSuccessHandler oauth2SuccessHandler;
 
     @Value("${app.cors.allowed-origins}")
     private String[] allowedOrigins;
-
-    @Value("${app.oauth2.enabled:false}")
-    private boolean oauth2Enabled;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -40,45 +36,42 @@ public class SecurityConfig {
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
             
             .authorizeHttpRequests(auth -> auth
-                // Públicos
+                // Public endpoints
                 .requestMatchers("/api/auth/register").permitAll()
                 .requestMatchers("/api/auth/login").permitAll()
                 .requestMatchers("/api/auth/refresh").permitAll()
                 .requestMatchers("/api/auth/password/**").permitAll()
                 .requestMatchers("/actuator/**").permitAll()
                 
-                // OAuth2 endpoints (si está habilitado)
-                .requestMatchers("/oauth2/**", "/login/oauth2/**").permitAll()
+                // OAuth2 endpoints
+                .requestMatchers(
+                        "/oauth2/**",
+                        "/login/oauth2/**"
+                ).permitAll()
 
-                // Protegidos
+                // Protected endpoints
                 .requestMatchers("/api/auth/2fa/**").authenticated()
                 .anyRequest().authenticated()
             )
 
-            // Stateless porque usas JWT
+            // Stateless (JWT)
             .sessionManagement(sm ->
                 sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            );
+            )
 
-        // OAuth2 Login - solo si está habilitado
-        if (oauth2Enabled) {
-            http.oauth2Login(oauth2 -> oauth2
+            // ✅ OAuth2 con custom success handler
+            .oauth2Login(oauth2 -> oauth2
                 .authorizationEndpoint(ep ->
                     ep.baseUri("/oauth2/authorize")
                 )
                 .redirectionEndpoint(ep ->
                     ep.baseUri("/login/oauth2/code/*")
                 )
-                .defaultSuccessUrl("http://localhost:3000/auth/success", true)
-                .failureUrl("http://localhost:3000/auth/error")
-            );
-        }
+                .successHandler(oauth2SuccessHandler) // ← Custom handler
+                .failureUrl("http://localhost:3000/login?error=oauth2_failed")
+            )
 
-        http
-            // Auth provider
             .authenticationProvider(authenticationProvider)
-
-            // JWT Filter
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
