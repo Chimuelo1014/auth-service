@@ -5206,3 +5206,411 @@ Caused by: java.net.ConnectException: Connection refused: getsockopt
     where
         status=? 
         and locked_until<?
+2025-12-03 02:49:53 [main] INFO  c.s.auth.AuthServiceApplication - Starting AuthServiceApplication using Java 21.0.8 with PID 25220 (C:\Users\USUARIO\Documents\RIWI\proyecto_ruta_avanzada\sentinel\project-root-java\auth-service-java\target\classes started by USUARIO in C:\Users\USUARIO\Documents\RIWI\proyecto_ruta_avanzada\sentinel\project-root-java\auth-service-java)
+2025-12-03 02:49:53 [main] DEBUG c.s.auth.AuthServiceApplication - Running with Spring Boot v3.2.12, Spring v6.1.15
+2025-12-03 02:49:53 [main] INFO  c.s.auth.AuthServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2025-12-03 02:49:54 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-03 02:49:54 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 66 ms. Found 4 JPA repository interfaces.
+2025-12-03 02:49:55 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=841f0675-cd44-3e31-9ca5-7d9e9980eb19
+2025-12-03 02:49:55 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2025-12-03 02:49:55 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-12-03 02:49:55 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-12-03 02:49:55 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-12-03 02:49:55 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1880 ms
+2025-12-03 02:49:55 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-12-03 02:49:56 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@10b87ff6
+2025-12-03 02:49:56 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-12-03 02:49:56 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-03 02:49:56 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.10.Final
+2025-12-03 02:49:56 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-12-03 02:49:56 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-03 02:49:56 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-12-03 02:49:57 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-03 02:49:57 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-03 02:49:57 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-12-03 02:49:57 [main] DEBUG c.s.a.s.f.JWTAuthenticationFilter - Filter 'JWTAuthenticationFilter' configured for use
+2025-12-03 02:49:58 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-03 02:49:58 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint(s) beneath base path '/actuator'
+2025-12-03 02:49:58 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4f6f6223, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@c55b4d0, org.springframework.security.web.context.SecurityContextHolderFilter@3413a3a6, org.springframework.security.web.header.HeaderWriterFilter@7a61020a, org.springframework.web.filter.CorsFilter@6d2058b1, org.springframework.security.web.authentication.logout.LogoutFilter@736b8ed4, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@340572ad, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@55fee98a, com.sentinel.auth.security.filters.JWTAuthenticationFilter@71d37ecd, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@6900954e, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@787168e8, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@685271b1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@21c7c5f0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4cbb73bf, org.springframework.security.web.session.SessionManagementFilter@2b4a0be0, org.springframework.security.web.access.ExceptionTranslationFilter@61ee1773, org.springframework.security.web.access.intercept.AuthorizationFilter@4ddb2c51]
+2025-12-03 02:49:59 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path ''
+2025-12-03 02:49:59 [main] INFO  c.s.auth.AuthServiceApplication - Started AuthServiceApplication in 5.885 seconds (process running for 6.216)
+2025-12-03 02:50:00 [scheduling-1] DEBUG c.s.a.s.AccountUnlockScheduler - Checking for expired account locks
+2025-12-03 02:50:00 [scheduling-1] DEBUG org.hibernate.SQL - 
+    update
+        users 
+    set
+        status=?,
+        locked_until=null 
+    where
+        status=? 
+        and locked_until<?
+2025-12-03 02:50:25 [http-nio-8081-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-03 02:50:25 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-12-03 02:50:25 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-12-03 02:51:51 [main] INFO  c.s.auth.AuthServiceApplication - Starting AuthServiceApplication using Java 21.0.8 with PID 12432 (C:\Users\USUARIO\Documents\RIWI\proyecto_ruta_avanzada\sentinel\project-root-java\auth-service-java\target\classes started by USUARIO in C:\Users\USUARIO\Documents\RIWI\proyecto_ruta_avanzada\sentinel\project-root-java\auth-service-java)
+2025-12-03 02:51:51 [main] DEBUG c.s.auth.AuthServiceApplication - Running with Spring Boot v3.2.12, Spring v6.1.15
+2025-12-03 02:51:51 [main] INFO  c.s.auth.AuthServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2025-12-03 02:51:52 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-03 02:51:52 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 61 ms. Found 4 JPA repository interfaces.
+2025-12-03 02:51:52 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=841f0675-cd44-3e31-9ca5-7d9e9980eb19
+2025-12-03 02:51:52 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2025-12-03 02:51:52 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-12-03 02:51:52 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-12-03 02:51:52 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-12-03 02:51:52 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1806 ms
+2025-12-03 02:51:53 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-12-03 02:51:53 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5bb97fe7
+2025-12-03 02:51:53 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-12-03 02:51:53 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-03 02:51:53 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.10.Final
+2025-12-03 02:51:53 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-12-03 02:51:53 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-03 02:51:53 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-12-03 02:51:54 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-03 02:51:54 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-03 02:51:54 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-12-03 02:51:55 [main] DEBUG c.s.a.s.f.JWTAuthenticationFilter - Filter 'JWTAuthenticationFilter' configured for use
+2025-12-03 02:51:55 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-03 02:51:55 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint(s) beneath base path '/actuator'
+2025-12-03 02:51:56 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@467c785d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1d302061, org.springframework.security.web.context.SecurityContextHolderFilter@268467ab, org.springframework.security.web.header.HeaderWriterFilter@74055597, org.springframework.web.filter.CorsFilter@7a4729e6, org.springframework.security.web.authentication.logout.LogoutFilter@77889f63, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@59606589, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@2a19eaf0, com.sentinel.auth.security.filters.JWTAuthenticationFilter@56c95789, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@1fa67a80, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@57f9cc7a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@38dd3252, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1b35f06a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7262f848, org.springframework.security.web.session.SessionManagementFilter@5c9cbc69, org.springframework.security.web.access.ExceptionTranslationFilter@4b6f196c, org.springframework.security.web.access.intercept.AuthorizationFilter@a3c7dbc]
+2025-12-03 02:51:56 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path ''
+2025-12-03 02:51:56 [main] INFO  c.s.auth.AuthServiceApplication - Started AuthServiceApplication in 5.766 seconds (process running for 6.078)
+2025-12-03 02:52:08 [http-nio-8081-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-03 02:52:08 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-12-03 02:52:08 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-12-03 02:55:00 [scheduling-1] DEBUG c.s.a.s.AccountUnlockScheduler - Checking for expired account locks
+2025-12-03 02:55:00 [scheduling-1] DEBUG org.hibernate.SQL - 
+    update
+        users 
+    set
+        status=?,
+        locked_until=null 
+    where
+        status=? 
+        and locked_until<?
+2025-12-03 03:00:00 [scheduling-1] INFO  c.s.a.s.TokenCleanupScheduler - Starting cleanup of expired refresh tokens
+2025-12-03 03:00:00 [scheduling-1] DEBUG org.hibernate.SQL - 
+    delete 
+    from
+        refresh_tokens 
+    where
+        expires_at<? 
+        or status=?
+2025-12-03 03:00:00 [scheduling-1] INFO  c.s.a.s.TokenCleanupScheduler - Expired refresh tokens cleanup completed
+2025-12-03 03:00:00 [scheduling-1] DEBUG c.s.a.s.AccountUnlockScheduler - Checking for expired account locks
+2025-12-03 03:00:00 [scheduling-1] DEBUG org.hibernate.SQL - 
+    update
+        users 
+    set
+        status=?,
+        locked_until=null 
+    where
+        status=? 
+        and locked_until<?
+2025-12-03 03:01:02 [main] INFO  c.s.auth.AuthServiceApplication - Starting AuthServiceApplication using Java 21.0.8 with PID 11420 (C:\Users\USUARIO\Documents\RIWI\proyecto_ruta_avanzada\sentinel\project-root-java\auth-service-java\target\classes started by USUARIO in C:\Users\USUARIO\Documents\RIWI\proyecto_ruta_avanzada\sentinel\project-root-java\auth-service-java)
+2025-12-03 03:01:02 [main] DEBUG c.s.auth.AuthServiceApplication - Running with Spring Boot v3.2.12, Spring v6.1.15
+2025-12-03 03:01:02 [main] INFO  c.s.auth.AuthServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2025-12-03 03:01:03 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-03 03:01:03 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 73 ms. Found 4 JPA repository interfaces.
+2025-12-03 03:01:03 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=841f0675-cd44-3e31-9ca5-7d9e9980eb19
+2025-12-03 03:01:04 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2025-12-03 03:01:04 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-12-03 03:01:04 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-12-03 03:01:04 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-12-03 03:01:04 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1902 ms
+2025-12-03 03:01:04 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-12-03 03:01:04 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5bb97fe7
+2025-12-03 03:01:04 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-12-03 03:01:04 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-03 03:01:04 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.10.Final
+2025-12-03 03:01:04 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-12-03 03:01:05 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-03 03:01:05 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-12-03 03:01:05 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-03 03:01:05 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-03 03:01:06 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-12-03 03:01:06 [main] DEBUG c.s.a.s.f.JWTAuthenticationFilter - Filter 'JWTAuthenticationFilter' configured for use
+2025-12-03 03:01:06 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-03 03:01:07 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint(s) beneath base path '/actuator'
+2025-12-03 03:01:07 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@467c785d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1d302061, org.springframework.security.web.context.SecurityContextHolderFilter@268467ab, org.springframework.security.web.header.HeaderWriterFilter@74055597, org.springframework.web.filter.CorsFilter@7a4729e6, org.springframework.security.web.authentication.logout.LogoutFilter@77889f63, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@59606589, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@2a19eaf0, com.sentinel.auth.security.filters.JWTAuthenticationFilter@56c95789, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@1fa67a80, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@57f9cc7a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@38dd3252, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1b35f06a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7262f848, org.springframework.security.web.session.SessionManagementFilter@5c9cbc69, org.springframework.security.web.access.ExceptionTranslationFilter@4b6f196c, org.springframework.security.web.access.intercept.AuthorizationFilter@a3c7dbc]
+2025-12-03 03:01:07 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path ''
+2025-12-03 03:01:07 [main] INFO  c.s.auth.AuthServiceApplication - Started AuthServiceApplication in 5.817 seconds (process running for 6.121)
+2025-12-03 03:01:19 [http-nio-8081-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-03 03:01:19 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-12-03 03:01:19 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-12-03 03:05:00 [scheduling-1] DEBUG c.s.a.s.AccountUnlockScheduler - Checking for expired account locks
+2025-12-03 03:05:00 [scheduling-1] DEBUG org.hibernate.SQL - 
+    update
+        users 
+    set
+        status=?,
+        locked_until=null 
+    where
+        status=? 
+        and locked_until<?
+2025-12-03 03:10:00 [scheduling-1] DEBUG c.s.a.s.AccountUnlockScheduler - Checking for expired account locks
+2025-12-03 03:10:00 [scheduling-1] DEBUG org.hibernate.SQL - 
+    update
+        users 
+    set
+        status=?,
+        locked_until=null 
+    where
+        status=? 
+        and locked_until<?
+2025-12-03 03:10:17 [main] INFO  c.s.auth.AuthServiceApplication - Starting AuthServiceApplication using Java 21.0.8 with PID 4596 (C:\Users\USUARIO\Documents\RIWI\proyecto_ruta_avanzada\sentinel\project-root-java\auth-service-java\target\classes started by USUARIO in C:\Users\USUARIO\Documents\RIWI\proyecto_ruta_avanzada\sentinel\project-root-java\auth-service-java)
+2025-12-03 03:10:17 [main] DEBUG c.s.auth.AuthServiceApplication - Running with Spring Boot v3.2.12, Spring v6.1.15
+2025-12-03 03:10:17 [main] INFO  c.s.auth.AuthServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2025-12-03 03:10:18 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-03 03:10:18 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 61 ms. Found 4 JPA repository interfaces.
+2025-12-03 03:10:18 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=841f0675-cd44-3e31-9ca5-7d9e9980eb19
+2025-12-03 03:10:18 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2025-12-03 03:10:18 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-12-03 03:10:18 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-12-03 03:10:19 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-12-03 03:10:19 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1805 ms
+2025-12-03 03:10:19 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-12-03 03:10:19 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@10b87ff6
+2025-12-03 03:10:19 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-12-03 03:10:19 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-03 03:10:19 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.10.Final
+2025-12-03 03:10:19 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-12-03 03:10:19 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-03 03:10:19 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-12-03 03:10:20 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-03 03:10:20 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-03 03:10:20 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-12-03 03:10:21 [main] DEBUG c.s.a.s.f.JWTAuthenticationFilter - Filter 'JWTAuthenticationFilter' configured for use
+2025-12-03 03:10:21 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-03 03:10:22 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint(s) beneath base path '/actuator'
+2025-12-03 03:10:22 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1c57a111, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2cef365b, org.springframework.security.web.context.SecurityContextHolderFilter@201b8a01, org.springframework.security.web.header.HeaderWriterFilter@7720e110, org.springframework.web.filter.CorsFilter@25f73ef, org.springframework.security.web.authentication.logout.LogoutFilter@3dbdc1f6, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@751661b, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@459c7fa1, com.sentinel.auth.security.filters.JWTAuthenticationFilter@70dbd79f, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@736b8ed4, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@6d6f7412, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2f074818, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@59631e2a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4c110f87, org.springframework.security.web.session.SessionManagementFilter@7ece1800, org.springframework.security.web.access.ExceptionTranslationFilter@6236d83a, org.springframework.security.web.access.intercept.AuthorizationFilter@7262f848]
+2025-12-03 03:10:22 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path ''
+2025-12-03 03:10:22 [main] INFO  c.s.auth.AuthServiceApplication - Started AuthServiceApplication in 5.716 seconds (process running for 6.021)
+2025-12-03 03:10:48 [http-nio-8081-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-03 03:10:48 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-12-03 03:10:48 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-12-03 03:14:29 [http-nio-8081-exec-9] INFO  c.s.a.s.o.OAuth2AuthenticationSuccessHandler - 🔐 OAuth2 authentication successful
+2025-12-03 03:14:29 [http-nio-8081-exec-9] INFO  c.s.a.s.o.OAuth2AuthenticationSuccessHandler - 📧 OAuth2 Provider: google, Attributes: [at_hash, sub, email_verified, iss, given_name, nonce, picture, aud, azp, name, exp, family_name, iat, email]
+2025-12-03 03:14:29 [http-nio-8081-exec-9] INFO  c.s.a.s.o.OAuth2AuthenticationSuccessHandler - ✅ OAuth2 login - Provider: google, Email: samuelqs66@gmail.com, ProviderId: 111383654857141046125
+2025-12-03 03:14:29 [http-nio-8081-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        ue1_0.id,
+        ue1_0.auth_provider,
+        ue1_0.created_at,
+        ue1_0.email,
+        ue1_0.email_verified,
+        ue1_0.failed_login_attempts,
+        ue1_0.global_role,
+        ue1_0.last_login,
+        ue1_0.last_password_change,
+        ue1_0.locked_until,
+        ue1_0.password,
+        ue1_0.provider_user_id,
+        ue1_0.status,
+        ue1_0.tenant_id,
+        ue1_0.two_factor_enabled,
+        ue1_0.two_factor_secret,
+        ue1_0.updated_at 
+    from
+        users ue1_0 
+    where
+        ue1_0.email=?
+2025-12-03 03:14:29 [http-nio-8081-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        ue1_0.id,
+        ue1_0.auth_provider,
+        ue1_0.created_at,
+        ue1_0.email,
+        ue1_0.email_verified,
+        ue1_0.failed_login_attempts,
+        ue1_0.global_role,
+        ue1_0.last_login,
+        ue1_0.last_password_change,
+        ue1_0.locked_until,
+        ue1_0.password,
+        ue1_0.provider_user_id,
+        ue1_0.status,
+        ue1_0.tenant_id,
+        ue1_0.two_factor_enabled,
+        ue1_0.two_factor_secret,
+        ue1_0.updated_at 
+    from
+        users ue1_0 
+    where
+        ue1_0.auth_provider=? 
+        and ue1_0.provider_user_id=?
+2025-12-03 03:14:29 [http-nio-8081-exec-9] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        users
+        (auth_provider, created_at, email, email_verified, failed_login_attempts, global_role, last_login, last_password_change, locked_until, password, provider_user_id, status, tenant_id, two_factor_enabled, two_factor_secret, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2025-12-03 03:14:29 [http-nio-8081-exec-9] INFO  c.s.a.s.o.OAuth2AuthenticationSuccessHandler - ✅ New OAuth2 user created: 565c1b8b-58ef-4c08-aa22-d37fcf08824a
+2025-12-03 03:14:29 [async-1] INFO  o.s.a.r.c.CachingConnectionFactory - Attempting to connect to: [localhost:5672]
+2025-12-03 03:14:29 [http-nio-8081-exec-9] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        refresh_tokens
+        (created_at, expires_at, ip_address, revoked_at, status, token_hash, used_at, user_agent, user_id, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2025-12-03 03:14:29 [http-nio-8081-exec-9] INFO  c.s.a.s.o.OAuth2AuthenticationSuccessHandler - ✅ JWT + RefreshToken generated for user: 565c1b8b-58ef-4c08-aa22-d37fcf08824a
+2025-12-03 03:14:29 [http-nio-8081-exec-9] INFO  c.s.a.s.o.OAuth2AuthenticationSuccessHandler - 🔀 Redirecting to: http://localhost:3000/auth/callback?token=eyJhbGciOiJIUzI1NiJ9.eyJnbG9iYWxSb2xlIjoiVVNFUiIsInVzZXJJZCI6IjU2NWMxYjhiLTU4ZWYtNGMwOC1hYTIyLWQzN2ZjZjA4ODI0YSIsImVtYWlsIjoic2FtdWVscXM2NkBnbWFpbC5jb20iLCJzdWIiOiJzYW11ZWxxczY2QGdtYWlsLmNvbSIsImlhdCI6MTc2NDc0OTY2OSwiZXhwIjoxNzY0NzUzMjY5fQ.c3XihZLmzoI_z9WQGK0ycdBVVSh7jrfkG7Z6Nu4UF4c&refreshToken=5413b36e-60db-46e2-9ebf-8a56c8e230d4&success=true
+2025-12-03 03:14:29 [async-1] INFO  o.s.a.r.c.CachingConnectionFactory - Created new connection: rabbitConnectionFactory#460222eb:0/SimpleConnection@21fa5460 [delegate=amqp://guest@127.0.0.1:5672/, localPort=64441]
+2025-12-03 03:14:29 [async-1] INFO  c.s.auth.events.AuthEventPublisher - Published user.registered event for user: 565c1b8b-58ef-4c08-aa22-d37fcf08824a
+2025-12-03 03:14:29 [async-2] DEBUG c.s.auth.events.AuthEventPublisher - Published user.login event for user: 565c1b8b-58ef-4c08-aa22-d37fcf08824a
+2025-12-03 03:14:58 [scheduling-1] DEBUG c.s.a.s.AccountUnlockScheduler - Checking for expired account locks
+2025-12-03 03:14:58 [scheduling-1] DEBUG org.hibernate.SQL - 
+    update
+        users 
+    set
+        status=?,
+        locked_until=null 
+    where
+        status=? 
+        and locked_until<?
+2025-12-03 03:18:37 [main] INFO  c.s.auth.AuthServiceApplication - Starting AuthServiceApplication using Java 21.0.8 with PID 16496 (C:\Users\USUARIO\Documents\RIWI\proyecto_ruta_avanzada\sentinel\project-root-java\auth-service-java\target\classes started by USUARIO in C:\Users\USUARIO\Documents\RIWI\proyecto_ruta_avanzada\sentinel\project-root-java\auth-service-java)
+2025-12-03 03:18:37 [main] DEBUG c.s.auth.AuthServiceApplication - Running with Spring Boot v3.2.12, Spring v6.1.15
+2025-12-03 03:18:37 [main] INFO  c.s.auth.AuthServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2025-12-03 03:18:39 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-03 03:18:39 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 67 ms. Found 4 JPA repository interfaces.
+2025-12-03 03:18:39 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=841f0675-cd44-3e31-9ca5-7d9e9980eb19
+2025-12-03 03:18:40 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2025-12-03 03:18:40 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-12-03 03:18:40 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-12-03 03:18:40 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-12-03 03:18:40 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2078 ms
+2025-12-03 03:18:40 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-12-03 03:18:40 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@323e026d
+2025-12-03 03:18:40 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-12-03 03:18:40 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-03 03:18:40 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.10.Final
+2025-12-03 03:18:40 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-12-03 03:18:40 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-03 03:18:40 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-12-03 03:18:41 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-03 03:18:41 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-03 03:18:41 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-12-03 03:18:42 [main] DEBUG c.s.a.s.f.JWTAuthenticationFilter - Filter 'JWTAuthenticationFilter' configured for use
+2025-12-03 03:18:43 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-03 03:18:43 [main] INFO  c.s.auth.config.SecurityConfig - 🔧 Configuring SecurityFilterChain with OAuth2
+2025-12-03 03:18:43 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint(s) beneath base path '/actuator'
+2025-12-03 03:18:43 [main] INFO  c.s.auth.config.SecurityConfig - ✅ SecurityFilterChain configured successfully
+2025-12-03 03:18:43 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6d81522b, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@599e81bd, org.springframework.security.web.context.SecurityContextHolderFilter@58a887fb, org.springframework.security.web.header.HeaderWriterFilter@1f878eed, org.springframework.web.filter.CorsFilter@467c785d, org.springframework.security.web.authentication.logout.LogoutFilter@13095872, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@4b85a64, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@577d001f, com.sentinel.auth.security.filters.JWTAuthenticationFilter@56c95789, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@72d44be3, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@1d302061, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2ca57c02, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7a61020a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7a4729e6, org.springframework.security.web.session.SessionManagementFilter@6767f1c4, org.springframework.security.web.access.ExceptionTranslationFilter@4ef55aa6, org.springframework.security.web.access.intercept.AuthorizationFilter@725bb3a8]
+2025-12-03 03:18:44 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path ''
+2025-12-03 03:18:44 [main] INFO  c.s.auth.AuthServiceApplication - Started AuthServiceApplication in 6.706 seconds (process running for 7.008)
+2025-12-03 03:18:52 [main] INFO  c.s.auth.AuthServiceApplication - Starting AuthServiceApplication using Java 21.0.8 with PID 5452 (C:\Users\USUARIO\Documents\RIWI\proyecto_ruta_avanzada\sentinel\project-root-java\auth-service-java\target\classes started by USUARIO in C:\Users\USUARIO\Documents\RIWI\proyecto_ruta_avanzada\sentinel\project-root-java\auth-service-java)
+2025-12-03 03:18:52 [main] DEBUG c.s.auth.AuthServiceApplication - Running with Spring Boot v3.2.12, Spring v6.1.15
+2025-12-03 03:18:52 [main] INFO  c.s.auth.AuthServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2025-12-03 03:18:53 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-03 03:18:53 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 68 ms. Found 4 JPA repository interfaces.
+2025-12-03 03:18:54 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=841f0675-cd44-3e31-9ca5-7d9e9980eb19
+2025-12-03 03:18:54 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2025-12-03 03:18:54 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-12-03 03:18:54 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-12-03 03:18:54 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-12-03 03:18:54 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1959 ms
+2025-12-03 03:18:54 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-12-03 03:18:55 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5bb97fe7
+2025-12-03 03:18:55 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-12-03 03:18:55 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-03 03:18:55 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.10.Final
+2025-12-03 03:18:55 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-12-03 03:18:55 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-03 03:18:55 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-12-03 03:18:56 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-03 03:18:56 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-03 03:18:56 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-12-03 03:18:56 [main] DEBUG c.s.a.s.f.JWTAuthenticationFilter - Filter 'JWTAuthenticationFilter' configured for use
+2025-12-03 03:18:57 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-03 03:18:57 [main] INFO  c.s.auth.config.SecurityConfig - 🔧 Configuring SecurityFilterChain with OAuth2
+2025-12-03 03:18:57 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint(s) beneath base path '/actuator'
+2025-12-03 03:18:57 [main] INFO  c.s.auth.config.SecurityConfig - ✅ SecurityFilterChain configured successfully
+2025-12-03 03:18:57 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@70a416c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@652f3a8c, org.springframework.security.web.context.SecurityContextHolderFilter@2b4a0be0, org.springframework.security.web.header.HeaderWriterFilter@30aeb2b3, org.springframework.web.filter.CorsFilter@24ccf6a8, org.springframework.security.web.authentication.logout.LogoutFilter@4288d7b6, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@7a4729e6, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@2d86f17b, com.sentinel.auth.security.filters.JWTAuthenticationFilter@275860e9, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@2d36a825, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@6dcf902, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6448679f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@41f5f4ba, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5308c994, org.springframework.security.web.session.SessionManagementFilter@4aab04cf, org.springframework.security.web.access.ExceptionTranslationFilter@199f2854, org.springframework.security.web.access.intercept.AuthorizationFilter@5944fbf0]
+2025-12-03 03:18:58 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path ''
+2025-12-03 03:18:58 [main] INFO  c.s.auth.AuthServiceApplication - Started AuthServiceApplication in 5.951 seconds (process running for 6.261)
+2025-12-03 03:19:14 [http-nio-8081-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-03 03:19:14 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-12-03 03:19:14 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-12-03 03:19:54 [http-nio-8081-exec-6] INFO  c.s.a.s.o.OAuth2AuthenticationSuccessHandler - 🔐 OAuth2 authentication successful
+2025-12-03 03:19:54 [http-nio-8081-exec-6] INFO  c.s.a.s.o.OAuth2AuthenticationSuccessHandler - 📧 OAuth2 Provider: google, Attributes: [at_hash, sub, email_verified, iss, given_name, nonce, picture, aud, azp, name, exp, family_name, iat, email]
+2025-12-03 03:19:54 [http-nio-8081-exec-6] INFO  c.s.a.s.o.OAuth2AuthenticationSuccessHandler - ✅ OAuth2 login - Provider: google, Email: samuqs20@gmail.com, ProviderId: 116062128448784538950
+2025-12-03 03:19:54 [http-nio-8081-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        ue1_0.id,
+        ue1_0.auth_provider,
+        ue1_0.created_at,
+        ue1_0.email,
+        ue1_0.email_verified,
+        ue1_0.failed_login_attempts,
+        ue1_0.global_role,
+        ue1_0.last_login,
+        ue1_0.last_password_change,
+        ue1_0.locked_until,
+        ue1_0.password,
+        ue1_0.provider_user_id,
+        ue1_0.status,
+        ue1_0.tenant_id,
+        ue1_0.two_factor_enabled,
+        ue1_0.two_factor_secret,
+        ue1_0.updated_at 
+    from
+        users ue1_0 
+    where
+        ue1_0.email=?
+2025-12-03 03:19:54 [http-nio-8081-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        ue1_0.id,
+        ue1_0.auth_provider,
+        ue1_0.created_at,
+        ue1_0.email,
+        ue1_0.email_verified,
+        ue1_0.failed_login_attempts,
+        ue1_0.global_role,
+        ue1_0.last_login,
+        ue1_0.last_password_change,
+        ue1_0.locked_until,
+        ue1_0.password,
+        ue1_0.provider_user_id,
+        ue1_0.status,
+        ue1_0.tenant_id,
+        ue1_0.two_factor_enabled,
+        ue1_0.two_factor_secret,
+        ue1_0.updated_at 
+    from
+        users ue1_0 
+    where
+        ue1_0.auth_provider=? 
+        and ue1_0.provider_user_id=?
+2025-12-03 03:19:54 [http-nio-8081-exec-6] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        users
+        (auth_provider, created_at, email, email_verified, failed_login_attempts, global_role, last_login, last_password_change, locked_until, password, provider_user_id, status, tenant_id, two_factor_enabled, two_factor_secret, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2025-12-03 03:19:54 [http-nio-8081-exec-6] INFO  c.s.a.s.o.OAuth2AuthenticationSuccessHandler - ✅ New OAuth2 user created: 78dda9ae-dd2d-42c5-8aa8-081e23b289c9
+2025-12-03 03:19:54 [async-1] INFO  o.s.a.r.c.CachingConnectionFactory - Attempting to connect to: [localhost:5672]
+2025-12-03 03:19:54 [http-nio-8081-exec-6] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        refresh_tokens
+        (created_at, expires_at, ip_address, revoked_at, status, token_hash, used_at, user_agent, user_id, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2025-12-03 03:19:54 [http-nio-8081-exec-6] INFO  c.s.a.s.o.OAuth2AuthenticationSuccessHandler - ✅ JWT + RefreshToken generated for user: 78dda9ae-dd2d-42c5-8aa8-081e23b289c9
+2025-12-03 03:19:54 [http-nio-8081-exec-6] INFO  c.s.a.s.o.OAuth2AuthenticationSuccessHandler - 🔀 Redirecting to: http://localhost:3000/auth/callback?token=eyJhbGciOiJIUzI1NiJ9.eyJnbG9iYWxSb2xlIjoiVVNFUiIsInVzZXJJZCI6Ijc4ZGRhOWFlLWRkMmQtNDJjNS04YWE4LTA4MWUyM2IyODljOSIsImVtYWlsIjoic2FtdXFzMjBAZ21haWwuY29tIiwic3ViIjoic2FtdXFzMjBAZ21haWwuY29tIiwiaWF0IjoxNzY0NzQ5OTk0LCJleHAiOjE3NjQ3NTM1OTR9.KfeoCtLvCF5DTMJAl4EUJkjKZAK3DymA0RXh4WLpoqk&refreshToken=7fc81271-d367-4429-9f86-369ba1cd38fd&success=true
+2025-12-03 03:19:54 [async-1] INFO  o.s.a.r.c.CachingConnectionFactory - Created new connection: rabbitConnectionFactory#49de1717:0/SimpleConnection@34a5cba3 [delegate=amqp://guest@127.0.0.1:5672/, localPort=54672]
+2025-12-03 03:19:54 [async-2] DEBUG c.s.auth.events.AuthEventPublisher - Published user.login event for user: 78dda9ae-dd2d-42c5-8aa8-081e23b289c9
+2025-12-03 03:19:54 [async-1] INFO  c.s.auth.events.AuthEventPublisher - Published user.registered event for user: 78dda9ae-dd2d-42c5-8aa8-081e23b289c9
+2025-12-03 03:20:00 [scheduling-1] DEBUG c.s.a.s.AccountUnlockScheduler - Checking for expired account locks
+2025-12-03 03:20:00 [scheduling-1] DEBUG org.hibernate.SQL - 
+    update
+        users 
+    set
+        status=?,
+        locked_until=null 
+    where
+        status=? 
+        and locked_until<?

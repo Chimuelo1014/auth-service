@@ -3,6 +3,7 @@ package com.sentinel.auth.config;
 import com.sentinel.auth.security.filters.JWTAuthenticationFilter;
 import com.sentinel.auth.security.oauth2.OAuth2AuthenticationSuccessHandler;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +18,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
 
+@Slf4j
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfig {
@@ -30,6 +32,8 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
+        log.info("🔧 Configuring SecurityFilterChain with OAuth2");
 
         http
             .csrf(csrf -> csrf.disable())
@@ -59,20 +63,16 @@ public class SecurityConfig {
                 sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             )
 
-            // ✅ OAuth2 con custom success handler
+            // OAuth2 Login
             .oauth2Login(oauth2 -> oauth2
-                .authorizationEndpoint(ep ->
-                    ep.baseUri("/oauth2/authorize")
-                )
-                .redirectionEndpoint(ep ->
-                    ep.baseUri("/login/oauth2/code/*")
-                )
-                .successHandler(oauth2SuccessHandler) // ← Custom handler
+                .successHandler(oauth2SuccessHandler)
                 .failureUrl("http://localhost:3000/login?error=oauth2_failed")
             )
 
             .authenticationProvider(authenticationProvider)
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
+        log.info("✅ SecurityFilterChain configured successfully");
 
         return http.build();
     }
