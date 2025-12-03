@@ -6,8 +6,8 @@ import com.sentinel.auth.dto.response.OAuth2UserInfo;
 import com.sentinel.auth.service.OAuth2Service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -18,11 +18,13 @@ import java.util.Map;
 
 /**
  * Controller para OAuth2 authentication (Google y Microsoft).
+ * Solo se activa si app.oauth2.enabled=true
  */
 @Slf4j
 @RestController
 @RequestMapping(APIConstants.OAUTH2_BASE_PATH)
 @RequiredArgsConstructor
+@ConditionalOnProperty(name = "app.oauth2.enabled", havingValue = "true")
 public class OAuth2Controller {
 
     private final OAuth2Service oauth2Service;

@@ -3,7 +3,6 @@ package com.sentinel.auth.service.impl;
 import com.sentinel.auth.client.TenantServiceClient;
 import com.sentinel.auth.client.dto.TenantCreationRequest;
 import com.sentinel.auth.client.dto.TenantDTO;
-import com.sentinel.auth.constants.ErrorMessages;
 import com.sentinel.auth.dto.response.AuthResponse;
 import com.sentinel.auth.dto.response.OAuth2UserInfo;
 import com.sentinel.auth.entity.RefreshTokenEntity;
@@ -18,6 +17,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.stereotype.Service;
@@ -31,6 +31,7 @@ import java.util.UUID;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@ConditionalOnProperty(name = "app.oauth2.enabled", havingValue = "true")
 public class OAuth2ServiceImpl implements OAuth2Service {
 
     private final UserRepository userRepository;
